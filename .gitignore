@@ -1,0 +1,8 @@
+# Ignore Mac system files
+.DS_store
+
+#Ignore node module folder
+01-js/node_modules
+
+#Ignore IDE files
+.idea

@@ -9,5 +9,15 @@ There is no automated test for this one, this is more for you to understand time
 */
 
 function calculateTime(n) {
-    return 0.01;
+    // Your code here
+    let start = new Date();
+    let sum = 0;
+    for(let i=1;i<=n;i++){
+      sum += i;
+    }
+    let end = new Date();
+    let time = end-start;
+    return time/1000;
 }
+console.log(calculateTime(1000000000));
+// It's giving me 0.946 seconds for 1-1000000000;

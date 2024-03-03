@@ -13,8 +13,25 @@ const jwtPassword = 'secret';
  *                        Returns null if the username is not a valid email or
  *                        the password does not meet the length requirement.
  */
+function validateEmail(email){
+    return email.includes('@');
+}
+
+function validatePassword(pass){
+    return pass.length >= 6;
+}
+
 function signJwt(username, password) {
     // Your code here
+    if(!validateEmail(username) || !validatePassword(password)){
+        return null;
+    }
+    // create the payload
+    const payload = {username, password};
+
+    // sign the jwt
+    const token = jwt.sign(payload, jwtPassword);
+    return token;
 }
 
 /**
@@ -27,6 +44,13 @@ function signJwt(username, password) {
  */
 function verifyJwt(token) {
     // Your code here
+    try{
+        jwt.verify(token,jwtPassword);
+        return true;
+    }
+    catch(err){
+        return false;
+    }
 }
 
 /**
@@ -38,6 +62,16 @@ function verifyJwt(token) {
  */
 function decodeJwt(token) {
     // Your code here
+    try{
+        const decoded = jwt.decode(token);
+        if(decoded === null){
+            return false;
+        }
+        return true;
+    }
+    catch(err){
+        return false;
+    }
 }
 
 
